@@ -3,7 +3,7 @@
 This module provides functionality to generate strong random passwords.
 """
 
-import random
+import secrets
 import string
 from typing import Optional
 
@@ -59,25 +59,25 @@ class PasswordGenerator:
             if exclude_ambiguous:
                 chars = chars.replace('l', '')
             char_pool += chars
-            required_chars.append(random.choice(chars))
+            required_chars.append(secrets.choice(chars))
         
         if use_uppercase:
             chars = self.uppercase
             if exclude_ambiguous:
                 chars = chars.replace('O', '').replace('I', '')
             char_pool += chars
-            required_chars.append(random.choice(chars))
+            required_chars.append(secrets.choice(chars))
         
         if use_numbers:
             chars = self.digits
             if exclude_ambiguous:
                 chars = chars.replace('0', '').replace('1', '')
             char_pool += chars
-            required_chars.append(random.choice(chars))
+            required_chars.append(secrets.choice(chars))
         
         if use_symbols:
             char_pool += self.symbols
-            required_chars.append(random.choice(self.symbols))
+            required_chars.append(secrets.choice(self.symbols))
         
         if not char_pool:
             raise ValueError("No characters available for password generation")
@@ -91,10 +91,13 @@ class PasswordGenerator:
         
         # Fill remaining length with random characters
         for _ in range(remaining_length):
-            password_chars.append(random.choice(char_pool))
+            password_chars.append(secrets.choice(char_pool))
         
         # Shuffle to avoid predictable patterns
-        random.shuffle(password_chars)
+        # Using secrets for cryptographically secure shuffling
+        for i in range(len(password_chars) - 1, 0, -1):
+            j = secrets.randbelow(i + 1)
+            password_chars[i], password_chars[j] = password_chars[j], password_chars[i]
         
         return ''.join(password_chars)
     
@@ -129,7 +132,7 @@ class PasswordGenerator:
             'phoenix', 'dragon', 'tiger', 'eagle', 'falcon', 'hawk'
         ]
         
-        selected_words = random.sample(words, min(word_count, len(words)))
+        selected_words = secrets.SystemRandom().sample(words, min(word_count, len(words)))
         
         if capitalize:
             selected_words = [word.capitalize() for word in selected_words]
@@ -137,7 +140,7 @@ class PasswordGenerator:
         passphrase = separator.join(selected_words)
         
         if add_number:
-            passphrase += separator + str(random.randint(100, 999))
+            passphrase += separator + str(secrets.randbelow(900) + 100)
         
         return passphrase
     

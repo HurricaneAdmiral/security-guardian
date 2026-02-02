@@ -41,6 +41,8 @@ pip install -r requirements.txt
 
 ## Usage
 
+### Interactive Application
+
 Run the main application:
 ```bash
 python main.py
@@ -50,6 +52,18 @@ The interactive menu will guide you through the available features:
 - Password Analysis
 - Phishing Link Analysis
 - Password Generator
+
+### Demo Script
+
+Run the demo to see all features in action:
+```bash
+python demo.py
+```
+
+This will demonstrate:
+- Password strength analysis with different password types
+- Phishing link detection with various URLs
+- Password generation options
 
 ### Example Usage
 
@@ -120,7 +134,7 @@ python -m unittest tests.test_password_generator
 
 - **Privacy First**: Password breach checking uses k-anonymity (only sends first 5 characters of hash)
 - **No Storage**: Passwords are never stored or logged
-- **Secure Generation**: Uses Python's `random` module with proper seeding
+- **Secure Generation**: Uses Python's `secrets` module for cryptographically secure randomness
 - **Best Practices**: Follows OWASP password guidelines
 
 ## Dependencies
