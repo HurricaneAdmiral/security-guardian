@@ -38,7 +38,7 @@ class Player {
         }
         break;
       case 'ufo':
-        this.velocityY = JUMP_VELOCITY * 0.65 * this.gravityDir;
+        this.velocityY = JUMP_VELOCITY * UFO_JUMP_MULTIPLIER * this.gravityDir;
         break;
     }
   }
@@ -63,9 +63,9 @@ class Player {
         break;
       case 'ship':
         if (this.shipThrusting) {
-          this.velocityY -= GRAVITY * 2.5 * this.gravityDir;
+          this.velocityY -= GRAVITY * SHIP_THRUST_MULTIPLIER * this.gravityDir;
         } else {
-          this.velocityY += GRAVITY * 1.8 * this.gravityDir;
+          this.velocityY += GRAVITY * SHIP_FALL_MULTIPLIER * this.gravityDir;
         }
         this.velocityY = Math.max(-12, Math.min(12, this.velocityY));
         break;

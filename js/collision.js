@@ -53,7 +53,7 @@ const CollisionSystem = (() => {
           if (!doesOverlap) break;
 
           // Tolerance for "came from this side" checks (must be generous for high-speed)
-          const TOL = 10;
+          const TOL = COLLISION_TOLERANCE;
 
           if (gd === 1) {
             // Normal gravity: falling down, land on TOP of platform
@@ -118,7 +118,7 @@ const CollisionSystem = (() => {
           const dx  = pcx - obj.x;
           const dy  = pcy - obj.y;
           const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < r + PLAYER_SIZE / 2 + 12 && jumpPressed) {
+          if (dist < r + PLAYER_SIZE / 2 + ORB_ACTIVATION_PADDING && jumpPressed) {
             result.events.push({ type: 'orb', obj });
           }
           break;

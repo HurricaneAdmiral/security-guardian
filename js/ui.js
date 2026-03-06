@@ -432,7 +432,7 @@ class UIRenderer {
     ctx.fillText('100%', CANVAS_WIDTH / 2, 160);
 
     // Stars (1-3 based on attempts)
-    const starCount = attempts <= 5 ? 3 : attempts <= 15 ? 2 : 1;
+    const starCount = attempts <= THREE_STAR_THRESHOLD ? 3 : attempts <= TWO_STAR_THRESHOLD ? 2 : 1;
     const starY = 198;
     ctx.font = '28px Arial, sans-serif';
     for (let i = 0; i < 3; i++) {

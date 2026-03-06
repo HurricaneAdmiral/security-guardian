@@ -18,6 +18,7 @@ class ParticleSystem {
         vx: Math.cos(angle) * speed,
         vy: Math.sin(angle) * speed,
         life: 1,
+        _frame: 0,
         maxLife: options.maxLife || 40,
         color: Array.isArray(options.color) ? options.color[Math.floor(Math.random() * options.color.length)] : (options.color || '#FFFFFF'),
         size: options.size !== undefined ? options.size * (0.6 + Math.random() * 0.8) : 4,
@@ -37,6 +38,7 @@ class ParticleSystem {
         vx: Math.cos(angle) * speed,
         vy: Math.sin(angle) * speed,
         life: 1,
+        _frame: 0,
         maxLife: 50 + Math.floor(Math.random() * 20),
         color: colors[Math.floor(Math.random() * colors.length)],
         size: 3 + Math.random() * 5,
@@ -56,6 +58,7 @@ class ParticleSystem {
         vx: Math.cos(angle) * speed,
         vy: Math.sin(angle) * speed + 0.5,
         life: 1,
+        _frame: 0,
         maxLife: 20 + Math.floor(Math.random() * 10),
         color: '#C8B88A',
         size: 2 + Math.random() * 2,
@@ -74,6 +77,7 @@ class ParticleSystem {
         vx: Math.cos(angle) * speed,
         vy: Math.sin(angle) * speed,
         life: 1,
+        _frame: 0,
         maxLife: 30,
         color: color || '#FFD700',
         size: 3 + Math.random() * 2,
@@ -94,6 +98,7 @@ class ParticleSystem {
         vx: Math.cos(angle) * speed,
         vy: Math.sin(angle) * speed - 2,
         life: 1,
+        _frame: 0,
         maxLife: 60 + Math.floor(Math.random() * 30),
         color: colors[Math.floor(Math.random() * colors.length)],
         size: 4 + Math.random() * 6,
@@ -110,7 +115,6 @@ class ParticleSystem {
       p.y += p.vy;
       p.vy += p.gravity;
       p.vx *= 0.98;
-      if (!p._frame) p._frame = 0;
       p._frame++;
       p.life = Math.max(0, 1 - p._frame / p.maxLife);
       if (p.life <= 0) {

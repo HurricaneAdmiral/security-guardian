@@ -7,6 +7,23 @@ const JUMP_VELOCITY = -13.5;
 const PLAYER_SCREEN_X = 180;
 const GROUND_Y = CANVAS_HEIGHT - TILE; // 410
 
+// Physics multipliers
+const SHIP_THRUST_MULTIPLIER = 2.5;
+const SHIP_FALL_MULTIPLIER   = 1.8;
+const UFO_JUMP_MULTIPLIER    = 0.65;
+
+// Collision / interaction tuning
+const COLLISION_TOLERANCE  = 10;  // px — how generous the "came from above" check is
+const ORB_ACTIVATION_PADDING = 12; // extra px around orb radius for proximity check
+const CEILING_BOUNCE_DAMPING = 0.3; // velocity multiplier when bouncing off a ceiling
+
+// Star-rating thresholds (win screen)
+const THREE_STAR_THRESHOLD = 5;   // ≤ N attempts → 3 stars
+const TWO_STAR_THRESHOLD   = 15;  // ≤ N attempts → 2 stars
+
+// Orb cooldown before it can re-trigger (ms)
+const ORB_COOLDOWN_MS = 400;
+
 const STATE = {
   MAIN_MENU: 'main_menu',
   LEVEL_SELECT: 'level_select',

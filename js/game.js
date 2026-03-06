@@ -352,9 +352,9 @@ class Game {
       }
       // Reverse velocity with damping so the player bounces off
       if (this.player.gravityDir === 1 && this.player.velocityY < 0) {
-        this.player.velocityY = Math.abs(this.player.velocityY) * 0.3;
+        this.player.velocityY = Math.abs(this.player.velocityY) * CEILING_BOUNCE_DAMPING;
       } else if (this.player.gravityDir === -1 && this.player.velocityY > 0) {
-        this.player.velocityY = -Math.abs(this.player.velocityY) * 0.3;
+        this.player.velocityY = -Math.abs(this.player.velocityY) * CEILING_BOUNCE_DAMPING;
       }
     }
 
@@ -381,7 +381,7 @@ class Game {
           const sx = event.obj.x - this.cameraX;
           this.particles.spawnOrb(sx, event.obj.y, event.obj.color || '#FFD700');
           // Allow re-trigger after a short cooldown
-          setTimeout(() => this.triggeredItems.delete(key), 400);
+          setTimeout(() => this.triggeredItems.delete(key), ORB_COOLDOWN_MS);
         }
         break;
       }
