@@ -363,11 +363,6 @@ class Game {
       this.processEvent(event);
     }
 
-    // Jump dust particle when landing
-    if (result.onGround && this.player.velocityY === 0) {
-      // occasional dust
-    }
-
     this.particles.update();
   }
 

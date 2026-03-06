@@ -110,9 +110,6 @@ class ParticleSystem {
       p.y += p.vy;
       p.vy += p.gravity;
       p.vx *= 0.98;
-      const elapsed = p.maxLife - (p.life * p.maxLife);
-      p.life = Math.max(0, 1 - (elapsed + 1) / p.maxLife);
-      // Actually track life as frames
       if (!p._frame) p._frame = 0;
       p._frame++;
       p.life = Math.max(0, 1 - p._frame / p.maxLife);
